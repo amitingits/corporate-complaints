@@ -1,0 +1,157 @@
+
+body {
+  font-family: 'Comic Neue', cursive;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  /* Background image */
+  background: url('/public/bgimg.jpg') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6); /* white with opacity */
+  pointer-events: none;  /* so clicks pass through */
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1; /* above the overlay */
+  max-width: 500px;
+  padding: 20px;
+  background-color: white; /* solid white */
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: none;
+  box-sizing: border-box;
+  margin-bottom: 16px;  /* spacing below textarea */
+}
+
+.button {
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff6b81;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff4c61;
+}
+
+/* Modal and loader styles unchanged */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.gif-loader {
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  margin: 20px auto;
+  object-fit: contain; /* keeps aspect ratio */
+}
+.okay-button {
+  background-color: #ff6b81;
+  color: white;
+  padding: 14px 32px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.okay-button:hover {
+  background-color: #ff4c61;
+}
+
+#bubble-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  bottom: 0;
+  color: #ff6b81;
+  opacity: 0.8;
+  user-select: none;
+  animation: float-up linear;
+}
+
+.bubble-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+@keyframes bubbleFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-50vh) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}

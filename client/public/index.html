@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Mailbox</title>
+</head>
+<body>
+  <div id="bubble-background"></div>
+  <div id="root"></div>
+  <script>
+  const bubbleBackground = document.getElementById('bubble-background');
+  const emojis = ['💭','💌','💖','😤','😡','🐻'];
+
+  function spawnBubble() {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    const size = 20 + Math.random() * 40;
+    bubble.style.fontSize = `${size}px`;
+
+    bubble.style.left = `${Math.random() * window.innerWidth}px`;
+    bubble.style.bottom = `0px`; // always start from bottom
+
+    bubbleBackground.appendChild(bubble);
+
+    const duration = 4 + Math.random() * 2;
+
+    bubble.animate(
+      [
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: `translateY(-${window.innerHeight}px)`, opacity: 0 }
+      ],
+      {
+        duration: duration * 1000,
+        easing: 'ease-out',
+        iterations: 1,
+        fill: 'forwards'
+      }
+    );
+
+    setTimeout(() => bubble.remove(), duration * 1000);
+  }
+
+  setInterval(spawnBubble, 400);
+</script>
+</body>
+</html>
